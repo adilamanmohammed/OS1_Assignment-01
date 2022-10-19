@@ -45,6 +45,16 @@ int main()
         printf("\n%s",booknames[i]);
     }
     printf("\n");
+    
+    char book_name[n][20];
+    for (i = 0; i < n; i++)
+    {
+        scanf("%s", book_name[i]);
+    }
+    printf("the list of books:\n");
+    for (i = 0; i < n; i++)
+        printf("%d.%s \n", i+1,  book_name[i]);
+  
     //remove the above debug print in the end!!!!!!!!!!!!!!!!!!!!
     
     
