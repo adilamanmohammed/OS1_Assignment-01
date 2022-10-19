@@ -22,7 +22,7 @@ int main()
 {
     //declaration of variables
     int N,i;
-    char *booknames[1000];
+    char booknames[1000];
     
     
     
