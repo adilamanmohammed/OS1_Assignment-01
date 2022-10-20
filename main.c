@@ -21,39 +21,26 @@ o Program Description:
 int main()
 {
     //declaration of variables
-    int N,i;
-    char booknames[1000];
-    
+    int n,i;
     
     
     //asking the user to the count of books
     printf("Enter the count of books : \n");
-    scanf("%d",&N);
+    scanf("%d",&n);
     
     //taking input of N number of book names
-    for(i=0;i<N;i++)
-    {
-        printf("Enter the %d)book name :",i+1);
-        scanf("%s",&booknames[i]);
-    }
     
-    //for debugging the above scanf
-    //remove it in the end!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    printf("\n");
-    for(i=0;i<N;i++)
-    {
-        printf("\n%s",booknames[i]);
-    }
-    printf("\n");
-    
-    char book_name[n][20];
+    char booknames[n][20];
     for (i = 0; i < n; i++)
     {
-        scanf("%s", book_name[i]);
+        scanf("%s", booknames[i]);
     }
+    
+    
+    //remove the below debugging code in the end
     printf("the list of books:\n");
     for (i = 0; i < n; i++)
-        printf("%d.%s \n", i+1,  book_name[i]);
+        printf("%d.%s \n", i+1,  booknames[i]);
   
     //remove the above debug print in the end!!!!!!!!!!!!!!!!!!!!
     
