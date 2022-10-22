@@ -18,11 +18,11 @@ o Program Description:
 
 
 //main function
-int main()
+int main(int argc, char* argv[])
 {
     //declaration of variables
     int n,i;
-    
+    int fcount=argc-1;
     
     //asking the user to the count of books
     printf("Enter the count of books : \n");
@@ -44,8 +44,13 @@ int main()
   
     //remove the above debug print in the end!!!!!!!!!!!!!!!!!!!!
     
-    
-    
+    //creating the child treads according to the count of files
+    for(i=0;i<fcount;i++)
+    {
+        
+        
+        
+    }
     
     
     printf("Hello World");
