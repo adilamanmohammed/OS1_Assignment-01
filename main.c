@@ -11,12 +11,13 @@ o Program Description:
 #include<stdlib.h>
 #include<string.h>
 #include<pthread.h>
+int k=0;
 
 
 
 void* searchbook()
 {
-    int k=1;
+    
     printf("%d is good\n",k);
     k=k+1;
     return 0;
