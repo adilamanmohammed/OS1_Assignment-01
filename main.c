@@ -9,6 +9,7 @@ o Program Description:
 //Declaration of required library
 #include <stdio.h>
 #include<stdlib.h>
+#include<string.h>
 
 
 
