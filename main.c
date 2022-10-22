@@ -7,13 +7,21 @@ o Program Description:
 */
 
 //Declaration of required library
-#include <stdio.h>
+#include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include<pthread.h>
 
 
 
-
+void* searchbook()
+{
+    int k=1;
+    printf("%d is good\n",k);
+    k=k+1;
+    return 0;
+    
+}
 
 
 
@@ -45,13 +53,33 @@ int main(int argc, char* argv[])
   
     //remove the above debug print in the end!!!!!!!!!!!!!!!!!!!!
     
+    //defining a tread array
+    pthread_t th[20];
+    
     //creating the child treads according to the count of files
     for(i=0;i<fcount;i++)
     {
+        if(pthread_create(&th[i],NULL,&searchbook,NULL)!=0)
+        {
+            perror("Failed to create thread\n");
+            return 1;
+        }
         
-        
+        printf("Thread %d has started\n",i);
         
     }
+    
+    for(i=0;i<fcount;i++)
+    {
+        if(pthread_join(th[i],NULL)!=0)
+        {
+            return 2;
+        }
+        
+        printf("Thread %d has finished execution successfully\n",i);
+        
+    }
+    
     
     
     printf("Hello World");
