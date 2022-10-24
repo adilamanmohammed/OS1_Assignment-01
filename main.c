@@ -33,24 +33,27 @@ int main(int argc, char* argv[])
     //declaration of variables
     int n,i;
     int fcount=argc-1;
+    char s[10];
     
     //asking the user to the count of books
     printf("Enter the count of books : \n");
     scanf("%d",&n);
+    fgets(s,10,stdin);
     
     //taking input of N number of book names
     
-    char booknames[n][20];
+    char booknames[n][255];
     for (i = 0; i < n; i++)
     {
-        scanf("%s", booknames[i]);
+        scanf("%[^\n]s", booknames[i]);
+        fgets(s,10,stdin);
     }
     
     
     //remove the below debugging code in the end
     printf("the list of books:\n");
     for (i = 0; i < n; i++)
-        printf("%d.%s \n", i+1,  booknames[i]);
+        printf("%d : %s \n", i+1,  booknames[i]);
   
     //remove the above debug print in the end!!!!!!!!!!!!!!!!!!!!
     
