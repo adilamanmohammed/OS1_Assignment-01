@@ -18,11 +18,11 @@ char booknames[MAX][255];
 
 void* searchbook(void* fname)
 {
-    
     printf("%d is good %s \n",k, fname);
     printf("%s\n",booknames[k]);
     k=k+1;
     return 0;
+    
     
 }
 
@@ -65,6 +65,7 @@ int main(int argc, char* argv[])
     //creating the child treads according to the count of files
     for(i=0;i<fcount;i++)
     {
+        sleep(1);
         if(pthread_create(&th[i],NULL,&searchbook,(void *) argv[i+1])!=0)
         {
             perror("Failed to create thread\n");
