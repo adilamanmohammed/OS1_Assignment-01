@@ -7,22 +7,53 @@ o Program Description:
 */
 
 //Declaration of required library
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 #include<pthread.h>
 #define MAX 100
+#define MAX_LENGTH 10000
 int k=0,n;
 char booknames[MAX][255];
+int is_not_present[MAX];
 
 
-void* searchbook(void* fname)
-{
-    printf("%d is good %s \n",k, fname);
-    printf("%s\n",booknames[k]);
-    k=k+1;
-    return 0;
+void* searchbook(void* fname){
+FILE *fp;
+printf("File Open :%s \n", fname);
+   char line[MAX_LENGTH];
+   fp = fopen(fname, "r");
+   if(fp == NULL){
+       printf("Cannot open file");
+   }
+   char thisLine[12000];
+   while (fgets(line, MAX_LENGTH , fp) != NULL){
+//   printf("%s",line);
+    strcpy(thisLine, line);
+    char title[300];
+    char genre[20];
+    char rating[10];
+    char summary[1000];
+    char *token;
+    int col = 0;
+    token = strtok(line, ",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+    strcpy(title,token);
+    token = strtok(NULL, ",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+
+    // printf(" \n --> %s \n", title);
+      for(int i=0;i<n;i++){
+        
+        if(strcmp(title, booknames[i]) == 0){
+            is_not_present[i] = 0;
+            printf("\n%s \n",thisLine);
+            }
+            
+        }
+      }
     
+    close(fp);
+    printf("file : %s closed successfully \n", fname);
     
 }
 
@@ -62,6 +93,9 @@ int main(int argc, char* argv[])
     //defining a tread array
     pthread_t th[20];
     
+    for(int j = 0; j< n;j++){
+        is_not_present[j] = 1;
+    }
     //creating the child treads according to the count of files
     for(i=0;i<fcount;i++)
     {
@@ -82,14 +116,16 @@ int main(int argc, char* argv[])
         {
             return 2;
         }
-        
+       
         printf("Thread %d has finished execution successfully\n",i);
-        
+         printf("Thread %d Exited \n", i);
     }
     
-    
-    
-    printf("Hello World");
+    for(int j=0;j<n;j++){
+        if(is_not_present[j] == 1){
+            printf("book : %s Not Found! \n", booknames[j]);
+        }
+    }
     
     return 0;
 }
