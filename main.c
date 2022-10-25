@@ -18,18 +18,25 @@ int k=0,n;
 char booknames[MAX][255];
 int is_not_present[MAX];
 
-
+//declaration of routine function for thread
 void* searchbook(void* fname){
+
+//declaration of files
 FILE *fp;
 printf("File Open :%s \n", fname);
    char line[MAX_LENGTH];
+   //reading the given file
    fp = fopen(fname, "r");
+   //print for file not found
    if(fp == NULL){
        printf("Cannot open file");
    }
+   //declaration for storing the current line
    char thisLine[12000];
+   
+   //while loop for to pass through a file line by line
    while (fgets(line, MAX_LENGTH , fp) != NULL){
-//   printf("%s",line);
+    //storing the current line in the variable
     strcpy(thisLine, line);
     char title[300];
     char genre[20];
@@ -37,11 +44,12 @@ printf("File Open :%s \n", fname);
     char summary[1000];
     char *token;
     int col = 0;
+    //splitting the line of file for getting each columb
     token = strtok(line, ",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
     strcpy(title,token);
     token = strtok(NULL, ",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
 
-    // printf(" \n --> %s \n", title);
+    //for loop for matching the title of the book and the book name entered by the user to get the records
       for(int i=0;i<n;i++){
         
         if(strcmp(title, booknames[i]) == 0){
@@ -116,7 +124,7 @@ int main(int argc, char* argv[])
         {
             return 2;
         }
-       
+       //thread cancellation 
         printf("Thread %d has finished execution successfully\n",i);
          printf("Thread %d Exited \n", i);
     }
